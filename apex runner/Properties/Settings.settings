@@ -5,5 +5,8 @@
     <Setting Name="uupath" Type="System.String" Scope="User">
       <Value Profile="(Default)">C:\Program Files (x86)\Netease\UU\launcher.exe</Value>
     </Setting>
+    <Setting Name="oopzpath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">C:\Users\Admin\AppData\Local\oopz\oopz.exe</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

@@ -34,5 +34,17 @@ namespace apex_runner.Properties {
                 this["uupath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("C:\\Users\\Admin\\AppData\\Local\\oopz\\oopz.exe")]
+        public string oopzpath {
+            get {
+                return ((string)(this["oopzpath"]));
+            }
+            set {
+                this["oopzpath"] = value;
+            }
+        }
     }
 }

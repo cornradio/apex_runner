@@ -38,6 +38,8 @@ namespace apex_runner
             }
             //获取设置中的 uu 加速器路径
             textBox1.Text = Settings.Default.uupath;
+            //获取语音软件路径
+            textBox2.Text = Settings.Default.oopzpath;
 
         }
 
@@ -106,6 +108,12 @@ namespace apex_runner
             Settings.Default.uupath = textBox1.Text;
             Settings.Default.Save();
         }
+        //textbox2 在修改时自动保存路径
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default.oopzpath = textBox2.Text;
+            Settings.Default.Save();
+        }
 
         //右下关于按钮
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
@@ -171,6 +179,31 @@ namespace apex_runner
             catch (Exception ex)
             {
                 Console.WriteLine("无法打开URL：" + ex.Message);
+            }
+        }
+
+ 
+
+
+        //开启语音软件
+        private void pictureBox3_Click(object sender, EventArgs e)
+        {
+            StartProgram("C:\\Users\\Admin\\AppData\\Local\\oopz\\oopz.exe");
+
+        }
+        //打开显示设置
+
+        private void pictureBox4_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                // 打开Windows的显示设置
+                Process.Start("ms-settings:display");
+                Console.WriteLine("显示设置已打开。");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine("无法打开显示设置: " + ex.Message);
             }
         }
     }
