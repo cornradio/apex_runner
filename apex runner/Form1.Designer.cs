@@ -53,6 +53,9 @@
             this.label6 = new System.Windows.Forms.Label();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.radioButtonaltshiftOff = new System.Windows.Forms.RadioButton();
+            this.radioButtonaltshiftOn = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -60,6 +63,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
@@ -79,7 +83,7 @@
             this.groupBox1.Controls.Add(this.radioButton1);
             this.groupBox1.Location = new System.Drawing.Point(12, 170);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(135, 73);
+            this.groupBox1.Size = new System.Drawing.Size(102, 73);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Win 键功能";
@@ -99,6 +103,7 @@
             // radioButton1
             // 
             this.radioButton1.AutoSize = true;
+            this.radioButton1.Checked = true;
             this.radioButton1.Location = new System.Drawing.Point(6, 19);
             this.radioButton1.Name = "radioButton1";
             this.radioButton1.Size = new System.Drawing.Size(49, 17);
@@ -132,9 +137,9 @@
             // 
             this.groupBox2.Controls.Add(this.radioButton_eng);
             this.groupBox2.Controls.Add(this.radioButton_chinese);
-            this.groupBox2.Location = new System.Drawing.Point(159, 170);
+            this.groupBox2.Location = new System.Drawing.Point(122, 170);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(135, 73);
+            this.groupBox2.Size = new System.Drawing.Size(102, 73);
             this.groupBox2.TabIndex = 2;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "输入法切换";
@@ -175,10 +180,11 @@
             // pictureBox2
             // 
             this.pictureBox2.AccessibleDescription = "开启加速器";
+            this.pictureBox2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox2.BackColor = System.Drawing.Color.Aqua;
             this.pictureBox2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(492, 189);
+            this.pictureBox2.Location = new System.Drawing.Point(506, 180);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(50, 50);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -190,7 +196,7 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(103, 271);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(383, 20);
+            this.textBox1.Size = new System.Drawing.Size(391, 20);
             this.textBox1.TabIndex = 6;
             this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
@@ -207,7 +213,7 @@
             // button1
             // 
             this.button1.AccessibleDescription = "";
-            this.button1.Location = new System.Drawing.Point(316, 180);
+            this.button1.Location = new System.Drawing.Point(338, 180);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(75, 63);
             this.button1.TabIndex = 8;
@@ -219,7 +225,7 @@
             // button2
             // 
             this.button2.AccessibleDescription = "win启用,输入法换中文";
-            this.button2.Location = new System.Drawing.Point(397, 180);
+            this.button2.Location = new System.Drawing.Point(419, 180);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(75, 63);
             this.button2.TabIndex = 9;
@@ -242,7 +248,7 @@
             // 
             this.linkLabel1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(583, 337);
+            this.linkLabel1.Location = new System.Drawing.Point(580, 337);
             this.linkLabel1.Name = "linkLabel1";
             this.linkLabel1.Size = new System.Drawing.Size(38, 13);
             this.linkLabel1.TabIndex = 12;
@@ -254,7 +260,7 @@
             // 
             this.linkLabel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Location = new System.Drawing.Point(590, 324);
+            this.linkLabel2.Location = new System.Drawing.Point(587, 324);
             this.linkLabel2.Name = "linkLabel2";
             this.linkLabel2.Size = new System.Drawing.Size(31, 13);
             this.linkLabel2.TabIndex = 13;
@@ -265,10 +271,11 @@
             // pictureBox3
             // 
             this.pictureBox3.AccessibleDescription = "开启加速器";
+            this.pictureBox3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox3.BackColor = System.Drawing.Color.BlueViolet;
             this.pictureBox3.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(548, 189);
+            this.pictureBox3.Location = new System.Drawing.Point(562, 180);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(50, 50);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -289,17 +296,18 @@
             // 
             this.textBox2.Location = new System.Drawing.Point(103, 301);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(383, 20);
+            this.textBox2.Size = new System.Drawing.Size(391, 20);
             this.textBox2.TabIndex = 17;
             this.textBox2.TextChanged += new System.EventHandler(this.textBox2_TextChanged);
             // 
             // pictureBox4
             // 
             this.pictureBox4.AccessibleDescription = "开启加速器";
+            this.pictureBox4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.pictureBox4.BackColor = System.Drawing.Color.Orange;
             this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(513, 245);
+            this.pictureBox4.Location = new System.Drawing.Point(527, 236);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(65, 50);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -307,11 +315,47 @@
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
             // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.radioButtonaltshiftOff);
+            this.groupBox3.Controls.Add(this.radioButtonaltshiftOn);
+            this.groupBox3.Location = new System.Drawing.Point(230, 170);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(102, 73);
+            this.groupBox3.TabIndex = 3;
+            this.groupBox3.TabStop = false;
+            this.groupBox3.Text = "ALT+Shift 功能";
+            // 
+            // radioButtonaltshiftOff
+            // 
+            this.radioButtonaltshiftOff.AutoSize = true;
+            this.radioButtonaltshiftOff.Location = new System.Drawing.Point(6, 42);
+            this.radioButtonaltshiftOff.Name = "radioButtonaltshiftOff";
+            this.radioButtonaltshiftOff.Size = new System.Drawing.Size(49, 17);
+            this.radioButtonaltshiftOff.TabIndex = 1;
+            this.radioButtonaltshiftOff.TabStop = true;
+            this.radioButtonaltshiftOff.Text = "禁用";
+            this.radioButtonaltshiftOff.UseVisualStyleBackColor = true;
+            this.radioButtonaltshiftOff.CheckedChanged += new System.EventHandler(this.radioButtonaltshiftOff_CheckedChanged);
+            // 
+            // radioButtonaltshiftOn
+            // 
+            this.radioButtonaltshiftOn.AutoSize = true;
+            this.radioButtonaltshiftOn.Checked = true;
+            this.radioButtonaltshiftOn.Location = new System.Drawing.Point(6, 19);
+            this.radioButtonaltshiftOn.Name = "radioButtonaltshiftOn";
+            this.radioButtonaltshiftOn.Size = new System.Drawing.Size(49, 17);
+            this.radioButtonaltshiftOn.TabIndex = 0;
+            this.radioButtonaltshiftOn.TabStop = true;
+            this.radioButtonaltshiftOn.Text = "启用";
+            this.radioButtonaltshiftOn.UseVisualStyleBackColor = true;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(624, 359);
+            this.ClientSize = new System.Drawing.Size(621, 359);
+            this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.pictureBox4);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBox2);
@@ -343,6 +387,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -373,6 +419,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.RadioButton radioButtonaltshiftOff;
+        private System.Windows.Forms.RadioButton radioButtonaltshiftOn;
     }
 }
 

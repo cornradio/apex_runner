@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using static WindowsKey;
 using static InputMethod;
+using static AltShift;
 using System.Diagnostics;
 using System.Threading;
 using System.IO;
@@ -70,6 +71,19 @@ namespace apex_runner
             }
         }
 
+        //切换 alt shift 开关功能
+        private void radioButtonaltshiftOff_CheckedChanged(object sender, EventArgs e)
+        {
+            if (radioButtonaltshiftOff.Checked == true)
+            {
+                AltShift.Disable();
+            }
+            else
+            {
+                AltShift.Enable();
+            }
+        }
+
         //手抖多点出来的,懒得删了
         private void label4_Click(object sender, EventArgs e)
         {
@@ -93,6 +107,7 @@ namespace apex_runner
         {
             radioButton2.Checked = true;
             radioButton_eng.Checked = true;
+            radioButtonaltshiftOff.Checked = true;
         }
 
         //一键恢复 开启正常电脑模式
@@ -100,6 +115,7 @@ namespace apex_runner
         {
             radioButton1.Checked = true;
             radioButton_chinese.Checked = true;
+            radioButtonaltshiftOn.Checked = true;
         }
 
         //textbox1 在修改时自动保存加速器路径
@@ -206,5 +222,6 @@ namespace apex_runner
                 Console.WriteLine("无法打开显示设置: " + ex.Message);
             }
         }
+
     }
 }
