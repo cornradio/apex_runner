@@ -95,12 +95,7 @@ namespace apex_runner
 
         }
 
-        //开启加速器 图片按钮
-        private void pictureBox2_Click(object sender, EventArgs e)
-        {
-            string path = textBox1.Text;
-            StartProgram(path);
-        }
+
 
         //一键优化 开启游戏模式
         private void button1_Click(object sender, EventArgs e)
@@ -180,6 +175,8 @@ namespace apex_runner
                 MessageBox.Show("无法启动程序：" + ex.Message, "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
         //用于开启网页链接的函数
         static void OpenUrl(string url)
         {
@@ -198,15 +195,20 @@ namespace apex_runner
             }
         }
 
- 
-
-
+        //开启加速器 图片按钮
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            string path = textBox1.Text;
+            StartProgram(path);
+        }
         //开启语音软件
         private void pictureBox3_Click(object sender, EventArgs e)
         {
-            StartProgram("C:\\Users\\Admin\\AppData\\Local\\oopz\\oopz.exe");
-
+            string path = textBox2.Text;
+            StartProgram(path);
         }
+
+
         //打开显示设置
 
         private void pictureBox4_Click(object sender, EventArgs e)
