@@ -70,7 +70,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Impact", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(153, 12);
+            this.label1.Location = new System.Drawing.Point(153, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(162, 36);
             this.label1.TabIndex = 0;
@@ -128,10 +128,11 @@
             this.label2.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.label2.Location = new System.Drawing.Point(155, 48);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(232, 76);
+            this.label2.Size = new System.Drawing.Size(232, 95);
             this.label2.TabIndex = 3;
-            this.label2.Text = "方便打 apex 的迷你启动器, \r\n- 快速关闭 Windows 键, 防止误触\r\n- 快速输入法切换成英文, 防止被弹出\r\n- 快速启动你的加速器, apex" +
-    " 无需等待!";
+            this.label2.Text = "方便打 apex 的迷你启动器, \r\n- 快速禁用 Windows 键, 防止误触\r\n- 快速禁用 Alt+Shift 和 Ctrl+Esc \r\n- 快速输入法切" +
+    "换成英文, 防止被弹出\r\n- 快速启动你的加速器, apex 无需等待!";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
             // 
             // groupBox2
             // 
@@ -171,7 +172,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(393, 48);
+            this.label3.Location = new System.Drawing.Point(405, 48);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(207, 76);
             this.label3.TabIndex = 4;
@@ -307,7 +308,7 @@
             this.pictureBox4.BackColor = System.Drawing.Color.Orange;
             this.pictureBox4.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(527, 236);
+            this.pictureBox4.Location = new System.Drawing.Point(525, 236);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(65, 50);
             this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;

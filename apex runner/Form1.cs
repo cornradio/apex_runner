@@ -129,7 +129,8 @@ namespace apex_runner
         //右下关于按钮
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show($"这个程序是免费的\n如果你感觉这个程序有帮助的话\n" +
+            MessageBox.Show($"版本号: v1.4" +
+                $"这个程序是免费的\n如果你感觉这个程序有帮助的话\n" +
                 $"我希望你们可以去 github 帮我点星星\n---\n" +
                 $"这个程序其实主要都是Chat-GPT 写的\n" +
                 $"有时候我得承认\n" +
@@ -225,5 +226,9 @@ namespace apex_runner
             }
         }
 
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

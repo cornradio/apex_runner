@@ -1,13 +1,17 @@
 ﻿using System;
 using System.Runtime.InteropServices;
+using System.Windows.Forms;
 
 public static class WindowsKey
 {
     // Windows API函数和常量
     private const int WH_KEYBOARD_LL = 13;
     private const int WM_KEYDOWN = 0x0100;
+    private const int WM_KEYUP = 0x0101;
     private const int VK_LWIN = 0x5B;
     private const int VK_RWIN = 0x5C;
+    private const int VK_ESC = 0x1B;
+    private const int VK_CTRL = 0x11;
 
     private static LowLevelKeyboardProc _proc = HookCallback;
     private static IntPtr _hookID = IntPtr.Zero;
@@ -46,11 +50,23 @@ public static class WindowsKey
         if (nCode >= 0 && wParam == (IntPtr)WM_KEYDOWN)
         {
             int vkCode = Marshal.ReadInt32(lParam);
+
             if (vkCode == VK_LWIN || vkCode == VK_RWIN)
             {
                 return (IntPtr)1; // 拦截Windows键
             }
+
+            if (vkCode == VK_ESC && Control.ModifierKeys.HasFlag(Keys.Control))
+            {
+                return (IntPtr)1; // 拦截Ctrl+Esc组合键
+            }
+
+            if (vkCode == VK_CTRL && Control.ModifierKeys.HasFlag(Keys.Escape))
+            {
+                return (IntPtr)1; // 拦截Ctrl+Esc组合键
+            }
         }
+
         return CallNextHookEx(_hookID, nCode, wParam, lParam);
     }
 
