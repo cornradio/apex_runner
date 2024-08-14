@@ -7,7 +7,8 @@
 [apex_runner/releases/ ](https://github.com/cornradio/apex_runner/releases)
 
 ## 截图 v1.5
-![Clip_2024-08-14_22-30-50](https://github.com/user-attachments/assets/eece6649-53cc-46fa-be62-2ba26f4b1a98)
+![Clip_2024-08-14_22-32-51](https://github.com/user-attachments/assets/d70e0e82-5d23-4888-95bc-7930d43f7cba)
+
 
 ## 截图 v1.4
 ![Clip_2024-08-02_19-50-35](https://github.com/user-attachments/assets/145e8ed4-b8bd-49bb-97fe-22477dc9adc2)
