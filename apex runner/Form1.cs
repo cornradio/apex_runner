@@ -21,9 +21,22 @@ namespace apex_runner
 {
     public partial class Form1 : Form
     {
+
         public Form1()
         {
             InitializeComponent();
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+        }
+        //让窗口可以拖拽
+        private const int WM_NCHITTEST = 0x84;
+        private const int HTCLIENT = 0x1;
+        private const int HTCAPTION = 0x2;
+        protected override void WndProc(ref Message message)
+        {
+            base.WndProc(ref message);
+
+            if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
+                message.Result = (IntPtr)HTCAPTION;
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -37,10 +50,10 @@ namespace apex_runner
             {
                 radioButton_eng.Checked = true;
             }
-            //获取设置中的 uu 加速器路径
+            //获取设置中的 uu 加速器路径\语音软件\ Steam 位置
             textBox1.Text = Settings.Default.uupath;
-            //获取语音软件路径
             textBox2.Text = Settings.Default.oopzpath;
+            textBox3.Text = Settings.Default.steampath;
 
         }
 
@@ -125,11 +138,15 @@ namespace apex_runner
             Settings.Default.oopzpath = textBox2.Text;
             Settings.Default.Save();
         }
-
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+            Settings.Default.steampath = textBox3.Text;
+            Settings.Default.Save();
+        }
         //右下关于按钮
         private void linkLabel2_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            MessageBox.Show($"版本号: v1.4" +
+            MessageBox.Show($"版本号: v1.5:黑色模式" +
                 $"这个程序是免费的\n如果你感觉这个程序有帮助的话\n" +
                 $"我希望你们可以去 github 帮我点星星\n---\n" +
                 $"这个程序其实主要都是Chat-GPT 写的\n" +
@@ -208,6 +225,12 @@ namespace apex_runner
             string path = textBox2.Text;
             StartProgram(path);
         }
+        //开起 Steam
+        private void pictureBox_steam_Click(object sender, EventArgs e)
+        {
+            string path = textBox3.Text;
+            StartProgram(path);
+        }
 
 
         //打开显示设置
@@ -229,6 +252,33 @@ namespace apex_runner
         private void label2_Click(object sender, EventArgs e)
         {
 
+        }
+        //关闭按钮
+        private void exitbutton_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        //点击 apex 大图 启动steam
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        bool IsFloded = true;
+        private void button3_Click(object sender, EventArgs e)
+        {
+            if (IsFloded)
+            {
+                this.Height = 450;
+                IsFloded = false;
+                button3.Text= "收起路径设置";                                                         
+            }
+            else {
+                this.Height = 310;
+                IsFloded = true;
+                button3.Text = "展开路径设置";
+
+            }
         }
     }
 }

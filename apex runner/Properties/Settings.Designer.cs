@@ -46,5 +46,17 @@ namespace apex_runner.Properties {
                 this["oopzpath"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("E:\\Program Files (x86)\\Steam\\steam.exe")]
+        public string steampath {
+            get {
+                return ((string)(this["steampath"]));
+            }
+            set {
+                this["steampath"] = value;
+            }
+        }
     }
 }
