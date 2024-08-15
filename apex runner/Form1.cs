@@ -54,7 +54,6 @@ namespace apex_runner
             textBox1.Text = Settings.Default.uupath;
             textBox2.Text = Settings.Default.oopzpath;
             textBox3.Text = Settings.Default.steampath;
-
         }
 
 
@@ -257,11 +256,7 @@ namespace apex_runner
         {
 
         }
-        //关闭按钮
-        private void exitbutton_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
+
         //点击 apex 大图 启动steam
         private void pictureBox1_Click(object sender, EventArgs e)
         {
@@ -284,17 +279,79 @@ namespace apex_runner
 
             }
         }
-        
+        //模拟缩小操作
         private void button4_Click(object sender, EventArgs e)
         {
             this.WindowState = FormWindowState.Minimized;
         }
-
-        // 焦点聚集在缩小的时候 , 自动切换到 "优化"按钮
-        // 以防止一些 bug
-        private void button4_Enter(object sender, EventArgs e)
+        //关闭按钮
+        private void exitbutton_Click(object sender, EventArgs e)
         {
-            this.button1.Focus();
+            this.Close();
         }
+        //在窗体被激活时,同时将窗体变成常规状态,这样在尝试开启多个实力时
+        //窗体不会以最小化状态被激活(视觉效果就是不会弹出来)
+        private void Form1_Activated(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Normal;
+        }
+
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            // 监控具体按键
+            //switch e.KeyCode 并执行功能 (模拟点击)
+            //1. enter 执行 button1
+            //2. BackSpace 执行 button2
+            //3. u 执行 picturebox2
+            //4. d 执行 picturebox4
+            //5. v 执行 picturebox4 双击功能
+            //6. s 执行 pictureBox_steam 
+            //7. o 执行 pictureBox3
+            // 使用 switch 语句监控具体按键
+            switch (e.KeyCode)
+            {
+                case Keys.Enter:
+                    // 模拟点击 button1
+                    button1.PerformClick();
+                    break;
+
+                case Keys.Back:
+                    // 模拟点击 button2
+                    button2.PerformClick();
+                    break;
+
+                case Keys.U:
+                    // 模拟点击 pictureBox2
+                    pictureBox2_Click(sender, EventArgs.Empty);
+                    break;
+
+                case Keys.D:
+                    // 模拟点击 pictureBox4
+                    pictureBox4_Click(sender, EventArgs.Empty);
+                    break;
+
+                case Keys.V:
+                    // 模拟双击 pictureBox4
+                    pictureBox4_DoubleClick(sender, EventArgs.Empty);
+                    break;
+
+                case Keys.S:
+                    // 模拟点击 pictureBox_steam
+                    pictureBox_steam_Click(sender, EventArgs.Empty);
+                    break;
+
+                case Keys.O:
+                    // 模拟点击 pictureBox3
+                    pictureBox3_Click(sender, EventArgs.Empty);
+                    break;
+
+                default:
+                    // 处理其他按键
+                    break;
+            }
+        }
+
+
     }
 }
