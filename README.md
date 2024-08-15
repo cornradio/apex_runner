@@ -6,8 +6,9 @@
 ## 下载地址 
 [apex_runner/releases/ ](https://github.com/cornradio/apex_runner/releases)
 
-## 截图 v1.5
-![Clip_2024-08-14_22-32-51](https://github.com/user-attachments/assets/d70e0e82-5d23-4888-95bc-7930d43f7cba)
+## 截图 v1.7
+![Clip_2024-08-15_22-08-00](https://github.com/user-attachments/assets/4508bed0-9c6d-4975-925b-7bc0818596c3)
+
 
 
 ## 截图 v1.4
