@@ -234,7 +234,6 @@ namespace apex_runner
 
 
         //打开显示设置
-
         private void pictureBox4_Click(object sender, EventArgs e)
         {
             try
@@ -247,6 +246,11 @@ namespace apex_runner
             {
                 Console.WriteLine("无法打开显示设置: " + ex.Message);
             }
+        }
+        //双击开启音频设置
+        private void pictureBox4_DoubleClick(object sender, EventArgs e)
+        {
+            Process.Start("ms-settings:apps-volume");
         }
 
         private void label2_Click(object sender, EventArgs e)
@@ -279,6 +283,18 @@ namespace apex_runner
                 button3.Text = "展开路径设置";
 
             }
+        }
+        
+        private void button4_Click(object sender, EventArgs e)
+        {
+            this.WindowState = FormWindowState.Minimized;
+        }
+
+        // 焦点聚集在缩小的时候 , 自动切换到 "优化"按钮
+        // 以防止一些 bug
+        private void button4_Enter(object sender, EventArgs e)
+        {
+            this.button1.Focus();
         }
     }
 }

@@ -63,6 +63,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
+            this.button4 = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -336,6 +337,7 @@
             this.pictureBox4.TabIndex = 19;
             this.pictureBox4.TabStop = false;
             this.pictureBox4.Click += new System.EventHandler(this.pictureBox4_Click);
+            this.pictureBox4.DoubleClick += new System.EventHandler(this.pictureBox4_DoubleClick);
             // 
             // groupBox3
             // 
@@ -464,6 +466,22 @@
             this.label8.TabIndex = 27;
             this.label8.Text = "Esc";
             // 
+            // button4
+            // 
+            this.button4.FlatAppearance.BorderSize = 0;
+            this.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.button4.Font = new System.Drawing.Font("Microsoft YaHei UI", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.button4.ForeColor = System.Drawing.Color.Crimson;
+            this.button4.Location = new System.Drawing.Point(555, 12);
+            this.button4.Name = "button4";
+            this.button4.Size = new System.Drawing.Size(40, 40);
+            this.button4.TabIndex = 28;
+            this.button4.TabStop = false;
+            this.button4.Text = "-";
+            this.button4.UseVisualStyleBackColor = true;
+            this.button4.Click += new System.EventHandler(this.button4_Click);
+            this.button4.Enter += new System.EventHandler(this.button4_Enter);
+            // 
             // Form1
             // 
             this.AcceptButton = this.button1;
@@ -472,6 +490,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaptionText;
             this.CancelButton = this.button2;
             this.ClientSize = new System.Drawing.Size(650, 311);
+            this.Controls.Add(this.button4);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.button3);
@@ -499,6 +518,7 @@
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "Form1";
@@ -557,6 +577,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Button button4;
     }
 }
 
