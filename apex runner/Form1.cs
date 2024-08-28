@@ -25,7 +25,7 @@ namespace apex_runner
         public Form1()
         {
             InitializeComponent();
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;   
         }
         //让窗口可以拖拽
         private const int WM_NCHITTEST = 0x84;
@@ -266,18 +266,22 @@ namespace apex_runner
         bool IsFloded = true;
         private void button3_Click(object sender, EventArgs e)
         {
+            double dpi = GetDpiPercent();
+            double dpi00 = dpi / 100; //这个参数用来计算展开和收起时,嗯对于hi DPI 屏幕的影响
             if (IsFloded)
             {
-                this.Height = 450;
+                this.Height = Convert.ToInt32(450 * dpi00);
                 IsFloded = false;
-                button3.Text= "收起路径设置";                                                         
+                button3.Text = "收起路径设置";
             }
-            else {
-                this.Height = 310;
+            else
+            {
+                this.Height = Convert.ToInt32(310 * dpi00);
                 IsFloded = true;
                 button3.Text = "展开路径设置";
 
             }
+
         }
         //模拟缩小操作
         private void button4_Click(object sender, EventArgs e)
@@ -351,7 +355,22 @@ namespace apex_runner
                     break;
             }
         }
+        //获取当前屏幕 DPI
+        public double GetDpiPercent()
+        {
+            double dpiX, dpiY;
+            using (Graphics graphics = this.CreateGraphics())
+            {
+                dpiX = graphics.DpiX;
+                dpiY = graphics.DpiY;
+            }
 
+            // 默认DPI为96（100%），计算DPI百分比
+            double dpiPercentageX = (dpiX / 96) * 100;
+            double dpiPercentageY = (dpiY / 96) * 100;
+            return dpiPercentageX;
+            //MessageBox.Show($"DPI 百分比: {dpiPercentageX}% (水平), {dpiPercentageY}% (垂直)");
+        }
 
     }
 }
