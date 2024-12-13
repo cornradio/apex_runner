@@ -303,57 +303,57 @@ namespace apex_runner
 
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
-            // 监控具体按键
-            //switch e.KeyCode 并执行功能 (模拟点击)
-            //1. enter 执行 button1
-            //2. BackSpace 执行 button2
-            //3. u 执行 picturebox2
-            //4. d 执行 picturebox4
-            //5. v 执行 picturebox4 双击功能
-            //6. s 执行 pictureBox_steam 
-            //7. o 执行 pictureBox3
-            // 使用 switch 语句监控具体按键
-            switch (e.KeyCode)
-            {
-                case Keys.Enter:
-                    // 模拟点击 button1
-                    button1.PerformClick();
-                    break;
+            //// 监控具体按键
+            ////switch e.KeyCode 并执行功能 (模拟点击)
+            ////1. enter 执行 button1
+            ////2. BackSpace 执行 button2
+            ////3. u 执行 picturebox2
+            ////4. d 执行 picturebox4
+            ////5. v 执行 picturebox4 双击功能
+            ////6. s 执行 pictureBox_steam 
+            ////7. o 执行 pictureBox3
+            //// 使用 switch 语句监控具体按键
+            //switch (e.KeyCode)
+            //{
+            //    case Keys.Enter:
+            //        // 模拟点击 button1
+            //        button1.PerformClick();
+            //        break;
 
-                case Keys.Back:
-                    // 模拟点击 button2
-                    button2.PerformClick();
-                    break;
+            //    case Keys.Back:
+            //        // 模拟点击 button2
+            //        button2.PerformClick();
+            //        break;
 
-                case Keys.U:
-                    // 模拟点击 pictureBox2
-                    pictureBox2_Click(sender, EventArgs.Empty);
-                    break;
+            //    case Keys.U:
+            //        // 模拟点击 pictureBox2
+            //        pictureBox2_Click(sender, EventArgs.Empty);
+            //        break;
 
-                case Keys.D:
-                    // 模拟点击 pictureBox4
-                    pictureBox4_Click(sender, EventArgs.Empty);
-                    break;
+            //    case Keys.D:
+            //        // 模拟点击 pictureBox4
+            //        pictureBox4_Click(sender, EventArgs.Empty);
+            //        break;
 
-                case Keys.V:
-                    // 模拟双击 pictureBox4
-                    pictureBox4_DoubleClick(sender, EventArgs.Empty);
-                    break;
+            //    case Keys.V:
+            //        // 模拟双击 pictureBox4
+            //        pictureBox4_DoubleClick(sender, EventArgs.Empty);
+            //        break;
 
-                case Keys.S:
-                    // 模拟点击 pictureBox_steam
-                    pictureBox_steam_Click(sender, EventArgs.Empty);
-                    break;
+            //    case Keys.S:
+            //        // 模拟点击 pictureBox_steam
+            //        pictureBox_steam_Click(sender, EventArgs.Empty);
+            //        break;
 
-                case Keys.O:
-                    // 模拟点击 pictureBox3
-                    pictureBox3_Click(sender, EventArgs.Empty);
-                    break;
+            //    case Keys.O:
+            //        // 模拟点击 pictureBox3
+            //        pictureBox3_Click(sender, EventArgs.Empty);
+            //        break;
 
-                default:
-                    // 处理其他按键
-                    break;
-            }
+            //    default:
+            //        // 处理其他按键
+            //        break;
+            //}
         }
         //获取当前屏幕 DPI
         public double GetDpiPercent()
@@ -372,5 +372,24 @@ namespace apex_runner
             //MessageBox.Show($"DPI 百分比: {dpiPercentageX}% (水平), {dpiPercentageY}% (垂直)");
         }
 
+        //kill ahk
+        private void button5_Click(object sender, EventArgs e)
+        {
+//try{($p=Get-Process|?{$_.Name-eq"AutoHotkey"}).Count;$p|Stop-Process -Force}catch{};Write-Host "成功终止了 $($p.Count) 个 AutoHotkey 进程"
+//run this
+            try
+            {
+                Process[] processes = Process.GetProcessesByName("AutoHotkey");
+                foreach (Process process in processes)
+                {
+                    process.Kill();
+                }
+                MessageBox.Show("成功终止了 " + processes.Length + " 个 AutoHotkey 进程");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("无法终止 AutoHotkey 进程: " + ex.Message);
+            }
+        }
     }
 }
