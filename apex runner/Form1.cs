@@ -380,11 +380,25 @@ namespace apex_runner
             try
             {
                 Process[] processes = Process.GetProcessesByName("AutoHotkey");
+               
                 foreach (Process process in processes)
                 {
                     process.Kill();
                 }
                 MessageBox.Show("成功终止了 " + processes.Length + " 个 AutoHotkey 进程");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("无法终止 AutoHotkey 进程: " + ex.Message);
+            }
+            try
+            {
+                Process[] processes = Process.GetProcessesByName("kasusa_util");
+
+                foreach (Process process in processes)
+                {
+                    process.Kill();
+                }
             }
             catch (Exception ex)
             {
