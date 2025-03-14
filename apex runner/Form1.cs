@@ -15,12 +15,26 @@ using System.Threading;
 using System.IO;
 using apex_runner.Properties;
 using System.Security.Policy;
-
+using System.Runtime.InteropServices;
 
 namespace apex_runner
 {
     public partial class Form1 : Form
     {
+        // 添加 Windows API 函数声明
+        [DllImport("user32.dll")]
+        private static extern bool RegisterHotKey(IntPtr hWnd, int id, uint fsModifiers, uint vk);
+
+        [DllImport("user32.dll")]
+        private static extern bool UnregisterHotKey(IntPtr hWnd, int id);
+
+        // 定义一些常量
+        private const int HOTKEY_ID = 9000;
+        private const uint MOD_NONE = 0x0000;
+        private const uint MOD_ALT = 0x0001;
+        private const uint MOD_CONTROL = 0x0002;
+        private const uint MOD_SHIFT = 0x0004;
+        private const uint MOD_WIN = 0x0008;
 
         public Form1()
         {
@@ -33,10 +47,26 @@ namespace apex_runner
         private const int HTCAPTION = 0x2;
         protected override void WndProc(ref Message message)
         {
-            base.WndProc(ref message);
+            const int WM_HOTKEY = 0x0312;
 
-            if (message.Msg == WM_NCHITTEST && (int)message.Result == HTCLIENT)
-                message.Result = (IntPtr)HTCAPTION;
+            switch (message.Msg)
+            {
+                case WM_HOTKEY:
+                    if (message.WParam.ToInt32() == HOTKEY_ID)
+                    {
+                        // 在这里处理热键事件
+                        HandleHotKey();
+                    }
+                    break;
+                
+                case WM_NCHITTEST:
+                    base.WndProc(ref message);
+                    if ((int)message.Result == HTCLIENT)
+                        message.Result = (IntPtr)HTCAPTION;
+                    return;
+            }
+            
+            base.WndProc(ref message);
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,8 +84,34 @@ namespace apex_runner
             textBox1.Text = Settings.Default.uupath;
             textBox2.Text = Settings.Default.oopzpath;
             textBox3.Text = Settings.Default.steampath;
+
+            // 加载保存的快捷键
+            string savedShortcut = Settings.Default.shortcut;
+            if (!string.IsNullOrEmpty(savedShortcut))
+            {
+                textBoxShortcut.Text = savedShortcut;
+                label8.Text = "当前快捷键: " + savedShortcut;
+                BindShortcut(savedShortcut);
+            }
         }
 
+        protected override void OnLoad(EventArgs e)
+        {
+            base.OnLoad(e);
+            // 注册热键 (例如: Ctrl + Alt + K)
+            RegisterHotKey(this.Handle, HOTKEY_ID, MOD_CONTROL | MOD_ALT, (uint)Keys.K);
+        }
+
+        protected override void OnFormClosing(FormClosingEventArgs e)
+        {
+            base.OnFormClosing(e);
+            // 注销所有热键
+            UnregisterHotKey(this.Handle, HOTKEY_ID);
+            if (currentHandler != null)
+            {
+                UnregisterHotKey(this.Handle, 100);
+            }
+        }
 
         //禁用 Windows 键功能
         private void radioButton2_CheckedChanged(object sender, EventArgs e)
@@ -270,7 +326,7 @@ namespace apex_runner
             double dpi00 = dpi / 100; //这个参数用来计算展开和收起时,嗯对于hi DPI 屏幕的影响
             if (IsFloded)
             {
-                this.Height = Convert.ToInt32(450 * dpi00);
+                this.Height = Convert.ToInt32(490 * dpi00);
                 IsFloded = false;
                 button3.Text = "收起路径设置";
             }
@@ -301,8 +357,8 @@ namespace apex_runner
         }
 
 
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
-        {
+        // private void Form1_KeyDown(object sender, KeyEventArgs e)
+        // {
             //// 监控具体按键
             ////switch e.KeyCode 并执行功能 (模拟点击)
             ////1. enter 执行 button1
@@ -354,7 +410,7 @@ namespace apex_runner
             //        // 处理其他按键
             //        break;
             //}
-        }
+        // }
         //获取当前屏幕 DPI
         public double GetDpiPercent()
         {
@@ -404,6 +460,166 @@ namespace apex_runner
             {
                 MessageBox.Show("无法终止 AutoHotkey 进程: " + ex.Message);
             }
+        }
+
+        private bool isRecordingShortcut = false;
+        private List<string> currentKeys = new List<string>();
+
+        private void buttonShortcut_Click(object sender, EventArgs e)
+        {
+            // 开始记录快捷键
+            isRecordingShortcut = true;
+            currentKeys.Clear();
+            textBoxShortcut.Text = "按下快捷键...";
+            this.KeyPreview = true;
+            this.KeyDown += Form1_KeyDown;
+            this.KeyUp += Form1_KeyUp;
+        }
+
+        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!isRecordingShortcut) return;
+
+            string keyName = e.KeyCode.ToString();
+            if (!currentKeys.Contains(keyName))
+            {
+                currentKeys.Add(keyName);
+            }
+
+            // 更新显示
+            textBoxShortcut.Text = string.Join(" + ", currentKeys);
+            e.Handled = true;
+        }
+
+        private void Form1_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!isRecordingShortcut) return;
+
+            // 当所有按键都释放时，结束记录
+            if (!e.Control && !e.Alt && !e.Shift && 
+                e.KeyCode != Keys.ControlKey && 
+                e.KeyCode != Keys.ShiftKey && 
+                e.KeyCode != Keys.Menu)
+            {
+                isRecordingShortcut = false;
+                this.KeyPreview = false;
+                this.KeyDown -= Form1_KeyDown;
+                this.KeyUp -= Form1_KeyUp;
+
+                // 保存快捷键到Settings
+                string shortcutStr = string.Join(" + ", currentKeys);
+                Settings.Default.shortcut = shortcutStr;
+                Settings.Default.Save();
+
+                // 绑定快捷键
+                BindShortcut(shortcutStr);
+            }
+
+            e.Handled = true;
+        }
+
+        private int clickCount = 0;
+        private KeyEventHandler currentHandler = null;
+
+        private void BindShortcut(string shortcutStr)
+        {
+            // 如果已有处理程序,先移除
+            if (currentHandler != null)
+            {
+                UnregisterHotKey(this.Handle, HOTKEY_ID);
+                this.KeyDown -= currentHandler;
+            }
+
+            // 解析快捷键字符串
+            string[] keys = shortcutStr.Split(new[] { " + " }, StringSplitOptions.None);
+            
+            // 设置修饰键
+            uint modifiers = 0;
+            Keys mainKey = Keys.None;
+            foreach (string key in keys)
+            {
+                if (key == "ControlKey") modifiers |= MOD_CONTROL;
+                else if (key == "Alt" || key == "Menu") modifiers |= MOD_ALT;
+                else if (key == "ShiftKey") modifiers |= MOD_SHIFT;
+                else mainKey = (Keys)Enum.Parse(typeof(Keys), key);
+            }
+
+            // 注册全局热键
+            if (!RegisterHotKey(this.Handle, HOTKEY_ID, modifiers, (uint)mainKey))
+            {
+                MessageBox.Show("热键注册失败！可能是该热键已被其他程序占用。");
+                return;
+            }
+
+            // 更新label8显示
+            label8.Text = "当前快捷键: " + shortcutStr;
+
+            // 保存当前的按键设置
+            currentHandler = (sender, e) =>
+            {
+                bool match = true;
+                foreach (string key in keys)
+                {
+                    Keys keyCode = (Keys)Enum.Parse(typeof(Keys), key);
+                    if ((Control.ModifierKeys & Keys.Control) == 0 && key == "ControlKey") match = false;
+                    if ((Control.ModifierKeys & Keys.Alt) == 0 && (key == "Alt" || key == "Menu")) match = false;
+                    if ((Control.ModifierKeys & Keys.Shift) == 0 && key == "ShiftKey") match = false;
+                    if (!e.KeyCode.HasFlag(keyCode) && key != "ControlKey" && key != "Menu" && key != "ShiftKey") match = false;
+                }
+                
+                if (match)
+                {
+                    HandleHotKey();
+                    e.Handled = true;
+                }
+            };
+
+            this.KeyDown += currentHandler;
+        }
+
+        private void HandleHotKey()
+        {
+            // 确保窗口在前台
+            if (!this.IsActive)
+            {
+                this.Activate();
+                // 给窗口一点时间来激活
+                Thread.Sleep(50);
+            }
+
+            switch (clickCount % 3)
+            {
+                case 0:
+                    button1_Click(this, EventArgs.Empty);
+                    break;
+                case 1:
+                    button2_Click(this, EventArgs.Empty);
+                    break;
+                case 2:
+                    button1_Click(this, EventArgs.Empty);
+                    break;
+            }
+            clickCount++;
+        }
+
+        // 添加一个IsActive属性
+        private bool IsActive
+        {
+            get
+            {
+                return Form.ActiveForm == this;
+            }
+        }
+
+        private void button6_Click(object sender, EventArgs e)
+        {
+                // 保存快捷键到Settings
+                string shortcutStr = textBoxShortcut.Text;
+                Settings.Default.shortcut = shortcutStr;
+                Settings.Default.Save();
+
+                // 绑定快捷键
+                BindShortcut(shortcutStr);
         }
     }
 }

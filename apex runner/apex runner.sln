@@ -1,0 +1,24 @@
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.2.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "apex runner", "apex runner.csproj", "{99BE765F-022C-7AA6-4FC6-87EB66FEE18D}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{99BE765F-022C-7AA6-4FC6-87EB66FEE18D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99BE765F-022C-7AA6-4FC6-87EB66FEE18D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99BE765F-022C-7AA6-4FC6-87EB66FEE18D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99BE765F-022C-7AA6-4FC6-87EB66FEE18D}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {34CC5E4C-59DC-4B17-AC3A-E43FDE55F21F}
+	EndGlobalSection
+EndGlobal

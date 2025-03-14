@@ -11,5 +11,8 @@
     <Setting Name="steampath" Type="System.String" Scope="User">
       <Value Profile="(Default)">E:\Program Files (x86)\Steam\steam.exe</Value>
     </Setting>
+    <Setting Name="shortcut" Type="System.String" Scope="User">
+      <Value Profile="(Default)" />
+    </Setting>
   </Settings>
 </SettingsFile>
